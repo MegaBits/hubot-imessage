@@ -3,7 +3,7 @@ Hubot iMessage Adapter
 
 Description
 ===========
-This is an adapter for Hubot that lets you communicate with Hubot via Apple iMessage.
+This is an adapter for Hubot that lets you communicate with Hubot via Apple iMessage. Updated to work.
 
 
 
@@ -17,12 +17,6 @@ through AppleScript. As such, using hubot-imessage requires Hubot to be running
 on a machine with OS X 10.8 or newer. You will also need a functioning node.js
 installation.
 
-**Warning**: It is possible the current code won't work if you are running Mountain Lion (OS X 10.8). If that's
-the case, you should check out the `legacy-support` tag. (If you can confirm or deny
-this, chiming in on the relevant [issue page](https://github.com/lazerwalker/hubot-imessage/pull/4)
-would be appreciated.)
-
-
 ### Installation
 
 Download the [latest version of Hubot](https://github.com/github/hubot/archive/master.zip)
@@ -32,7 +26,7 @@ add both `hubot` and `hubot-imessage` to the dependency section of your `package
     dependencies: {
         // more dependencies here...
         "hubot": ">=1.4.6",
-        "hubot-imessage": ">=0.0.1"
+        "MegaBits/hubot-imessage": ">=0.0.1"
     }
 
 You likely also want to add the `hubot-scripts` package as well; see the regular
@@ -49,18 +43,16 @@ requires some additional setup.
 new Apple ID at https://appleid.apple.com/cgi-bin/WebObjects/MyAppleId.woa/wa/createAppleId
 and sign in to it from your desktop Messages.app.
 
-2. In order for Messages.app to properly route conversations to Hubot, it needs to
+2. Set the necessary environment variables for Hubot: `HUBOT_NAME`, and `HUBOT_PATH`.
+
+3. In order for Messages.app to properly route conversations to Hubot, it needs to
 be set up to run an AppleScript in response to events. Open up Messages.app,
 then its Preferences pane from the title menu. Go to the General tab.
 
-3. Select "Open Scripts Folder" from the "AppleScript handler" dropdown.
+4. Select "Open Scripts Folder" from the "AppleScript handler" dropdown.
 
-4. Copy `$HUBOT_PATH/node_modules/hubot-imessage/src/Hubot Event Handler.applescript`
-(substitute `$HUBOT_PATH` with the actual path to your Hubot instance) to the
-iMessage scripts folder.
-
-5. Open the copy of `Hubot Event Handler.applescript` and replace `$HUBOT_PATH`
-with the path to your Hubot instance.
+5. Link the `Event Handler` to the
+iMessage scripts folder. `ln -s $HUBOT_PATH/node_modules/hubot-imessage/src/Hubot\ Event\ Handler.applescript Hubot\ Event\ Handler.applescript`
 
 6. In Messages.app, close the Preferences window and re-open it. Select the
 "Hubot Event Handler" script from the "AppleScript handler" dropdown.
@@ -69,10 +61,10 @@ with the path to your Hubot instance.
 will only respond to commands sent from iMessage users in its whitelist.
 Hubot reads in a comma-separated list of iMessage IDs from the environment
 variable `HUBOT_IMESSAGE_HANDLES` to know who to trust. iMessage IDs typically
-take the format of `+15551234` or `E:steve@mac.com`.
+take the format of `+15551234` or `steve@mac.com`.
 You can easily set this from your Terminal with something like:
 
-    `export HUBOT_IMESSAGE_HANDLES=+15551234,E:steve@mac.com`
+    `export HUBOT_IMESSAGE_HANDLES=+15551234,steve@mac.com`
 
 
 Usage

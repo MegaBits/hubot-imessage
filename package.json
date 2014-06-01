@@ -15,7 +15,7 @@
   "main": "./src/imessage.coffee",
   "repository": {
     "type": "git",
-    "url": "git://github.com/lazerwalker/hubot-imessage.git"
+    "url": "git://github.com/MegaBits/hubot-imessage.git"
   },
   "dependencies": {
     "applescript": ">=0.2.1",
