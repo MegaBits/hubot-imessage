@@ -16,7 +16,7 @@ class iMessageAdapter extends Adapter
       script = path.resolve(__dirname, 'Send iMessage.applescript')
       for message in strings
         AppleScript.execFile script,
-          [user, message],
+          [user, message, envelope.user.room],
           (err, rtn) ->
     else
       @robot.logger.info 'Refusing to send message to unauthorized iMessage user ' + user
@@ -31,9 +31,9 @@ class iMessageAdapter extends Adapter
       if data.userId in @allowedUsers
         user = @robot.brain.userForId(data.userId)
         user.name = data.name
-        user.room = 'iMessage'
+        user.room = data.room
 
-        msg = "#{@robot.name} #{data.message}"
+        msg = "#{data.message}"
         @receive new TextMessage(user, msg)
       else
         @robot.logger.info 'Ignoring message from unauthorized iMessage user ' + data.userId

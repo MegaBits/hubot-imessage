@@ -1,9 +1,10 @@
 using terms from application "Messages"
-	
 	on message received theMessage from theBuddy for theChat
-		set qMessage to quoted form of theMessage
+		set qMessage to quoted form of ((system attribute "HUBOT_NAME") & " " & theMessage)
 		set qHandle to quoted form of (handle of theBuddy as string)
-		set qScript to quoted form of "$HUBOT_PATH/node_modules/hubot-imessage/src/messageReceiver.coffee"
+		set qScript to quoted form of (system attribute "HUBOT_PATH") & "/node_modules/hubot-imessage/src/messageReceiver.coffee"
+		set qRoom to quoted form of (name of theChat as string)
+		
 		
 		if (first name of theBuddy) is missing value then
 			set qName to quoted form of ""
@@ -11,7 +12,7 @@ using terms from application "Messages"
 			set qName to quoted form of (first name of theBuddy as string)
 		end if
 		
-		do shell script "export PATH=/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin && " & qScript & " " & qHandle & " " & qMessage & " " & qName
+		do shell script "export PATH=/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin && " & qScript & " " & qHandle & " " & qMessage & " " & qName & " " & qRoom
 	end message received
 	
 	-- Accept text chats but deny everything else
@@ -51,7 +52,18 @@ using terms from application "Messages"
 	end message sent
 	
 	on chat room message received theMessage from theBuddy for theChat
+        set qMessage to quoted form of ((system attribute "HUBOT_NAME") & " " & theMessage)
+        set qHandle to quoted form of (handle of theBuddy as string)
+        set qScript to quoted form of (system attribute "HUBOT_PATH") & "/node_modules/hubot-imessage/src/messageReceiver.coffee"
+		set qRoom to quoted form of (name of theChat as string)
 		
+		if (first name of theBuddy) is missing value then
+			set qName to quoted form of ""
+		else
+			set qName to quoted form of (first name of theBuddy as string)
+		end if
+		
+		do shell script "export PATH=/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin && " & qScript & " " & qHandle & " " & qMessage & " " & qName & " " & qRoom
 	end chat room message received
 	
 	on active chat message received theMessage
