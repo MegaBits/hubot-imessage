@@ -26,7 +26,7 @@ add both `hubot` and `hubot-imessage` to the dependency section of your `package
     dependencies: {
         // more dependencies here...
         "hubot": ">=1.4.6",
-        "MegaBits/hubot-imessage": ">=0.0.1"
+        "hubot-imessage": "MegaBits/hubot-imessage"
     }
 
 You likely also want to add the `hubot-scripts` package as well; see the regular
