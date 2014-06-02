@@ -1,8 +1,12 @@
+on envVar(varName)
+	return do shell script "source ~/.bash_profile; echo $" & varName
+end envVar
+
 using terms from application "Messages"
 	on message received theMessage from theBuddy for theChat
-		set qMessage to quoted form of ((system attribute "HUBOT_NAME") & " " & theMessage)
+		set qMessage to quoted form of (envVar("HUBOT_NAME") & " " & theMessage)
 		set qHandle to quoted form of (handle of theBuddy as string)
-		set qScript to quoted form of (system attribute "HUBOT_PATH") & "/node_modules/hubot-imessage/src/messageReceiver.coffee"
+		set qScript to quoted form of (envVar("HUBOT_PATH") & "/node_modules/hubot-imessage/src/messageReceiver.coffee")
 		set qRoom to quoted form of (name of theChat as string)
 		
 		
@@ -52,10 +56,10 @@ using terms from application "Messages"
 	end message sent
 	
 	on chat room message received theMessage from theBuddy for theChat
-        set qMessage to quoted form of ((system attribute "HUBOT_NAME") & " " & theMessage)
+        set qMessage to quoted form of (envVar("HUBOT_NAME") & " " & theMessage)
         set qHandle to quoted form of (handle of theBuddy as string)
-        set qScript to quoted form of (system attribute "HUBOT_PATH") & "/node_modules/hubot-imessage/src/messageReceiver.coffee"
-		set qRoom to quoted form of (name of theChat as string)
+        set qScript to quoted form of (envVar("HUBOT_PATH") & "/node_modules/hubot-imessage/src/messageReceiver.coffee")
+        set qRoom to quoted form of (name of theChat as string)
 		
 		if (first name of theBuddy) is missing value then
 			set qName to quoted form of ""
