@@ -52,7 +52,7 @@ then its Preferences pane from the title menu. Go to the General tab.
 4. Select "Open Scripts Folder" from the "AppleScript handler" dropdown.
 
 5. Link the `Event Handler` to the
-iMessage scripts folder. `ln -s $HUBOT_PATH/node_modules/hubot-imessage/src/Hubot\ Event\ Handler.applescript Hubot\ Event\ Handler.applescript`
+iMessage scripts folder. `ln $HUBOT_PATH/node_modules/hubot-imessage/src/Hubot\ Event\ Handler.applescript Hubot\ Event\ Handler.applescript`
 
 6. In Messages.app, close the Preferences window and re-open it. Select the
 "Hubot Event Handler" script from the "AppleScript handler" dropdown.
