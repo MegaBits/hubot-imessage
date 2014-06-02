@@ -1,5 +1,5 @@
-set HUBOT_NAME="$HUBOT_NAME"
-set HUBOT_PATH="$HUBOT_PATH"
+set HUBOT_NAME to "$HUBOT_NAME"
+set HUBOT_PATH to "$HUBOT_PATH"
 
 using terms from application "Messages"
 	on message received theMessage from theBuddy for theChat
