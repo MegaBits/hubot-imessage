@@ -56,7 +56,7 @@ using terms from application "Messages"
 	end message sent
 	
 	on chat room message received theMessage from theBuddy for theChat
-        set qMessage to quoted form of (envVar("HUBOT_NAME") & " " & theMessage)
+        set qMessage to quoted form of theMessage
         set qHandle to quoted form of (handle of theBuddy as string)
         set qScript to quoted form of (envVar("HUBOT_PATH") & "/node_modules/hubot-imessage/src/messageReceiver.coffee")
         set qRoom to quoted form of (name of theChat as string)
