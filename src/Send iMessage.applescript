@@ -1,7 +1,3 @@
-on envVar(varName)
-	return do shell script "source ~/.bash_profile; echo $" & varName
-end envVar
-
 on run argv
 	set theHandle to item 1 of argv
 	set theMessage to item 2 of argv
@@ -12,7 +8,7 @@ on run argv
 		set theChat to first chat of theService whose name is theRoom
 		
 		if theMessage ends with "jpg" then
-			set theImagePath to envVar("HUBOT_PATH") & "/tmp.jpg"
+			set theImagePath to "tmp.jpg"
 			do shell script "curl -o " & theImagePath & " " & theMessage
 			
 			send POSIX file theImagePath to theChat
