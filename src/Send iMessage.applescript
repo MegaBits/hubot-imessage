@@ -7,15 +7,17 @@ on run argv
 		set theService to first service whose service type is iMessage
 		set theChat to first chat of theService whose name is theRoom
 		
-		if theMessage ends with "jpg" then
-			set theImagePath to "tmp.jpg"
-			do shell script "curl -o " & theImagePath & " " & theMessage
-			
-			send POSIX file theImagePath to theChat
-			do shell script "rm " & theImagePath
-		else
-			send theMessage to theChat
-		end if
+#		if theMessage ends with "jpg" then
+#			set theImagePath to "tmp.jpg"
+#			do shell script "curl -o " & theImagePath & " " & theMessage
+#			
+#			send POSIX file theImagePath to theChat
+#			do shell script "rm " & theImagePath
+#		else
+#			send theMessage to theChat
+#		end if
+
+        send theMessage to theChat
 		
 	end tell
 end run
