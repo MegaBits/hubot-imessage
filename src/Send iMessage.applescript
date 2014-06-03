@@ -1,4 +1,4 @@
- run argv
+on run argv
 	set theHandle to item 1 of argv
 	set theMessage to item 2 of argv
 	set theRoom to item 3 of argv
