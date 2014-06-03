@@ -10,6 +10,16 @@ on run argv
 	tell application "Messages"
 		set theService to first service whose service type is iMessage
 		set theChat to first chat of theService whose name is theRoom
-		send theMessage to theChat
+		
+		if theMessage ends with "jpg" then
+			set theImagePath to envVar("HUBOT_PATH") & "/tmp.jpg"
+			do shell script "curl -o " & theImagePath & " " & theMessage
+			
+			send POSIX file theImagePath to theChat
+			do shell script "rm " & theImagePath
+		else
+			send theMessage to theChat
+		end if
+		
 	end tell
 end run
